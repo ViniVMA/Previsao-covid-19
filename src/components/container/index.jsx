@@ -4,7 +4,7 @@ import { useState, useEffect, useLayoutEffect } from "react";
 import styles from "./container.modules.scss";
 
 export const Container = () => {
-  const [covid7Days, setCovid7Days] = useState();
+  const [covid7Days, setCovid7Days] = useState(null);
   const [totalCases, setTotalCases] = useState(null);
   const [prediction, setPrediction] = useState([]);
 
@@ -23,9 +23,6 @@ export const Container = () => {
       .catch((error) => console.error(error));
   }, []);
 
-  console.log(covid7Days);
-  console.log(totalCases);
-
   function numberWithCommas(num) {
     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
@@ -39,10 +36,10 @@ export const Container = () => {
       a = covid7Days,
       b = totalCases;
 
-    if (n < 1) {
-      console.log("por favor insira um valor valido");
+    if (n < 0) {
+      console.log("Por favor insira um valor valido");
     } else if (n > 9) {
-      console.log("por favor insira um valor valido");
+      console.log("Por favor insira um valor valido");
     } else if (isFloat(n)) {
       console.log("Você precisa inserir um numero inteiro");
     } else {
@@ -53,14 +50,18 @@ export const Container = () => {
     }
   }
 
-  covidPrediction(8.2);
+  useEffect(() => {
+    if (prediction.length === 0) {
+      return;
+    }
+    console.log(prediction);
+  }, [prediction]);
 
   return (
     <>
       <div className="Container">
         <div>
           <h1>Previsão Média do Contagio de COVID-19</h1>
-
           <div className="inputContainer">
             <input
               onChange={(event) => covidPrediction(event.target.value)}
@@ -75,7 +76,7 @@ export const Container = () => {
           <ol className="ItemsContainer">
             {prediction.map(({ casos }) => {
               return (
-                <li>
+                <li className="scale-up-center" key={Math.random()}>
                   <span>Dia</span> <span>{numberWithCommas(casos)}</span>
                 </li>
               );

@@ -33,10 +33,21 @@
 
 .ItemsContainer {
   color: #fff;
+  max-width: 160px;
+  margin: 0 auto;
+  text-align: center;
+
+  li::marker {
+    display: inline-block;
+    vertical-align: middle;
+  }
 
   li {
     position: relative;
     font-size: 18px;
+    -webkit-animation: slide-bottom 0.5s cubic-bezier(0.215, 0.61, 0.355, 1)
+      both;
+    animation: slide-bottom 0.5s cubic-bezier(0.215, 0.61, 0.355, 1) both;
 
     span:not(:first-child) {
       color: cyan;
@@ -60,5 +71,32 @@
     width: 170px;
     padding-left: 10px;
     margin-bottom: 10px;
+  }
+}
+
+.scale-up-center {
+  -webkit-animation: scale-up-center 0.4s cubic-bezier(0.39, 0.575, 0.565, 1)
+    both;
+  animation: scale-up-center 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+}
+
+@-webkit-keyframes scale-up-center {
+  0% {
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+  }
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}
+@keyframes scale-up-center {
+  0% {
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+  }
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
   }
 }
