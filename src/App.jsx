@@ -1,5 +1,5 @@
 import { useState, useEffect, useLayoutEffect } from 'react'
-import './App.css'
+import './App.scss'
 import axios from 'axios'
 
 
@@ -26,6 +26,10 @@ function App() {
   console.log(totalCases)
 
 
+  function numberWithCommas(num) {
+    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  }
+
 
   
   function covidPrediction(n) {
@@ -46,15 +50,22 @@ function App() {
 
 
   return (
-   <>
+   <div className= "App">
    <h1>Hello world</h1>
-   <button onClick={() => covidPrediction(7)}>aaaa</button>
-   <div style={{backgroundColor: "red", width: "100vw"}} className="users">
-      {prediction.map((dia) => (
-        <div  className="user">{prediction.dia}</div>
-      ))}
+
+   <input onChange={event => covidPrediction(event.target.value)} type="number" id="number" name="number"
+       min="0" max="9"></input>
+
+   <div  className="container">
+   {prediction.map(
+          ({ casos }) => {
+            return (
+             <h1>{numberWithCommas(casos)}</h1>
+            );
+          },
+        )}
     </div>
-   </>
+   </div>
   )
 }
 
