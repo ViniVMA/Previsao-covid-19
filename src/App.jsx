@@ -36,14 +36,27 @@ function App() {
     var covidNewCases = [],
       a = covid7Days,
       b = totalCases;
-  
+
+
+  if (n < 1){
+    console.log("por favor insira um valor valido")
+
+  } else if (n > 9) {
+    console.log("por favor insira um valor valido")
+
+   } else {
     for (var k = 0; k < n; k++) {
       covidNewCases.push({ dia: 1 * k, casos: b + a * Math.pow(2, 1 * k) });
     }
     setPrediction(covidNewCases);
+   }
+
+ 
+ 
+   
   }
   
-  console.log(prediction)
+//  console.log(covidPrediction(0))
 
 
   
