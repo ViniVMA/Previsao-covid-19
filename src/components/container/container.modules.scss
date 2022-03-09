@@ -25,16 +25,30 @@
   input[type="number"] {
     -moz-appearance: textfield;
   }
+
+  h1 {
+    text-align: center;
+  }
 }
 
 .ItemsContainer {
-  background-color: #000;
   color: #fff;
+
+  li {
+    position: relative;
+    font-size: 18px;
+
+    span:not(:first-child) {
+      color: cyan;
+      font-size: 24px;
+    }
+  }
 }
 
 .inputContainer {
   max-width: 300px;
   width: 100%;
+  margin: 0 auto;
 
   input {
     margin: 0 auto;

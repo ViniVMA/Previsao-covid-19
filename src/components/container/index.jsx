@@ -51,7 +51,7 @@ export const Container = () => {
     <>
       <div className="Container">
         <div>
-          <h1>Hello world</h1>
+          <h1>Previsão Média do Contagio de COVID-19</h1>
 
           <div className="inputContainer">
             <input
@@ -64,11 +64,15 @@ export const Container = () => {
               placeholder="Insira a quantidade de dias"
             ></input>
           </div>
-          <div className="itemsContainer">
+          <ol className="ItemsContainer">
             {prediction.map(({ casos }) => {
-              return <h1>{numberWithCommas(casos)}</h1>;
+              return (
+                <li>
+                  <span>Dia</span> <span>{numberWithCommas(casos)}</span>
+                </li>
+              );
             })}
-          </div>
+          </ol>
         </div>
       </div>
     </>
