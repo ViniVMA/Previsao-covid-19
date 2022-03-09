@@ -30,6 +30,10 @@ export const Container = () => {
     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
 
+  function isFloat(n) {
+    return Number(n) === n && n % 1 !== 0;
+  }
+
   function covidPrediction(n) {
     var covidNewCases = [],
       a = covid7Days,
@@ -39,6 +43,8 @@ export const Container = () => {
       console.log("por favor insira um valor valido");
     } else if (n > 9) {
       console.log("por favor insira um valor valido");
+    } else if (isFloat(n)) {
+      console.log("Você precisa inserir um numero inteiro");
     } else {
       for (var k = 0; k < n; k++) {
         covidNewCases.push({ dia: 1 * k, casos: b + a * Math.pow(2, 1 * k) });
@@ -46,6 +52,8 @@ export const Container = () => {
       setPrediction(covidNewCases);
     }
   }
+
+  covidPrediction(8.2);
 
   return (
     <>
